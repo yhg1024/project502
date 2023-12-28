@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.nz/thymleaf/l">
+<head>
+    <meta charset="UTF-8">
+    <title th:if=${pageTitle != null} th:text="${pageTitle}"></title>
+
+    <link rel="stylecheet" type="tesxt/css" th:href="@{/common/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="cssFile : ${addCommonCss}"
+          th:href="@{/common/css/{file}.css(file=${cssFile})}">
+    <link rel="stylesheet" type="text/css" th:href="@{admin/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
+          th:href="@{/admin/css/{file}.css(file=${cssFile})}">
+    <!-- 동적으로 필요한 페이지만 가져온다.-->
+
+    <script th:src="@{/common/js/common.js}"></script>
+    <script th:each="jsFile : ${addCommonScript}"
+            th:src="@{/common/js/{file}.js(file=${jsFile})}"></script>
+    <script th:src="@{/admin/js/common.js}"></script>
+    <script th:each="jsFile : ${addScript}"
+            th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
+</head>
+<body>
+
+</body>
+</html>
