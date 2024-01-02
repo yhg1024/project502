@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member,Long>, QuerydslPredicateExecutor<Member> {
 
-    // null값 처리가 필요하면 Optional이 좋다.
+    // Optional : null인 값을 참조해도 NullPointerException이 발생하지 않도록 값을 래퍼로 감싸주는 타입입니다
     Optional<Member> findByEmail (String email);
     Optional<Member> findByUserId(String userId);
 

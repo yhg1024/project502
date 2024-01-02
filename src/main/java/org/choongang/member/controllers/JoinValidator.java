@@ -36,11 +36,11 @@ public class JoinValidator implements Validator, PasswordValidator {
 
         // 1. 이메일, 아이디 중복 여부 체크
         if (StringUtils.hasText(email) && memberRepository.existsByEmail(email)) {
-            errors.reject("email", "Duplicated");
+            errors.rejectValue("email", "Duplicated");
         }
 
         if (StringUtils.hasText(userId) && memberRepository.existByUserId(userId)) {
-            errors.reject("userId", "Duplicated");
+            errors.rejectValue("userId", "Duplicated");
         }
 
         // 2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자도 1개 이상 포함
