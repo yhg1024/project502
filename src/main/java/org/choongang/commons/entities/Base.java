@@ -1,5 +1,4 @@
-package org.choongang.entities;
-
+package org.choongang.commons.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
