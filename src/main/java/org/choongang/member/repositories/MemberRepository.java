@@ -1,6 +1,7 @@
 package org.choongang.member.repositories;
 
 import org.choongang.member.entities.Member;
+import org.choongang.member.entities.QMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
@@ -12,5 +13,17 @@ public interface MemberRepository extends JpaRepository<Member,Long>, QuerydslPr
     Optional<Member> findByEmail (String email);
     Optional<Member> findByUserId(String userId);
 
-    // QuerydslPredicateExecutor<Member> 이걸써야 조건식을 추가로 할수있다.
+    // QuerydslPredicateExecutor<Member> 이걸써야 조건식(predicate)을 추가로 할수있다.
+
+    default boolean existsByEmail(String email) {
+        QMember member = QMember.member;
+
+        return exists(member.email.eq(email)); // 이메일이 같은지 확인
+    }
+
+    default boolean existByUserId(String userId) {
+        QMember member = QMember.member;
+
+        return exists(member.userId.eq(userId)); // 아이디가 같은지 확인
+    }
 }
