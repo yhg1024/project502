@@ -45,7 +45,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(c -> {
             // authorizeHttpRequests : 인가설정, 이 주소로 접근할때는 회원 로그인을 해야 접근 가능
             c.requestMatchers("/mypage/**").authenticated() // 회원전용
-                    .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER") // 여러개 권한
+                    //.requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER") // 여러개 권한
                     .anyRequest().permitAll(); // 그외 모든 페이지는 모두 접근 가능
             // requestMatchers("/mypage/**") : /mypage/ 시작하는 URL에 대한 보안 설정
         });

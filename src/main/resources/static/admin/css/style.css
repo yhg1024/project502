@@ -1,0 +1,130 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* {
+    font-family : 'Noto Sans KR', sans-serif;
+    color : #000;
+    box-sizing : border-box;
+    outline : none;
+}
+
+html { font-size : 13px; }
+
+body { margin : 0; }
+
+a { text-decoration : none; }
+
+ul, ol {
+    list-style : none;
+    margin : 0;
+    padding : 0;
+}
+
+dl, dt, dd {
+    margin : 0;
+    padding : 0;
+}
+
+img { border : 0;}
+
+
+/* 헤더 영역 S*/
+header {
+    height : 80px;
+    display : flex;
+    justify-content : space-between;
+    align-items:center;
+}
+
+header > section:first-of-type {
+    width : 280px;
+    text-align : center;
+}
+header section:first-of-type { width : 280px; text-align : center;}
+header section:last-of-type { flex-grow : 1; padding-right : 20px; text-align : right;}
+header .btn_area a {
+    width : 90px;
+    height : 28px;
+    display : inline-block;
+    border : 1px solid #596d99;
+    color: #596b99;
+    border-radius : 3px;
+    line-height : 26px;
+    text-align : center;
+    font-weight : 500;
+}
+header .btn_area a:last-of-type{
+    background : #596d99;
+    color: #fff;
+}
+
+/* 헤더 영역 E*/
+
+/* 내용 영역 S*/
+main {
+    background : #f1f3fa;
+    min-height : 1000px;
+    display : flex;
+}
+
+main aside {
+    width : 280px;
+    background : #596b99;
+}
+main section {flex-grow : 1;}
+main aside a {
+    height : 71px;
+    display : block;
+    color : #dddee4;
+    font-size : 1.385rem;
+    text-align : center; line-height : 70px;
+    position : relative;
+}
+
+main aside a+a {
+    border-top : 1px solid #61729e;
+}
+main aside a i {
+    color : #ddee4;
+    font-size : 1.385rem;
+}
+
+main aside a.on, main aside a:hover {
+    background : #3c4e7a;
+    font-weight : 500;
+}
+
+main > aside > a.on:after, main > aside > a:hover:after {
+    width: 8px;
+    height: 100%;
+    content: '';
+    display: block;
+    right: 0; top: 0;
+    background: #00d0d7;
+    position: absolute;
+}
+
+nav.submenus {
+    height : 60px;
+    box-shadow : 1px 1px 5px #cdced5;
+    background : #fff;
+    border-radius : 5px;
+    margin-bottom : 50px;
+    display : flex;
+    align-items : center;
+}
+
+nav.submenus a {
+    height : 60px;
+    line-height : 60px;
+    padding : 0 40px;
+    font-size : 1.385rem;
+    color : #222;
+}
+
+nav.submenus a.on {
+    background : #596d99;
+    color : #fff;
+    font-weight : 500;
+}
+/* 내용 영역 E*/
