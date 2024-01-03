@@ -1,19 +1,25 @@
 package org.choongang.member.service;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.commons.entities.Authorities;
+import org.choongang.member.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
 import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.AuthoritiesRepository;
 import org.choongang.member.repositories.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional // 트랜잭션 성공 여부에 따라 Commit 또는 Rollback 작업이 이루어진다.
 public class JoinService {
 
     private final MemberRepository memberRepository;
+    private final AuthoritiesRepository authoritiesRepository;
     private final JoinValidator validator;
     private final PasswordEncoder encoder;
 
@@ -36,6 +42,12 @@ public class JoinService {
         member.setPassword(hash);
 
         process(member);
+
+        // 회원가입시에는 일반 사용자 권한 부여(USER)
+        Authorities authorities = new Authorities();
+        authorities.setMember(member);
+        authorities.setAuthority(Authority.USER);
+        authoritiesRepository.saveAndFlush(authorities);
     }
 
     public void process(Member member) {
