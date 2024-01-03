@@ -17,6 +17,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession();
         MemberUtil.clearLoginData(session);
+        // Authentication authenticatio : 로그인 정보가 들어간다.
 
         // 회원 정보 조회 편의 구현
         MemberInfo memberInfo = (MemberInfo) authentication.getPrincipal();

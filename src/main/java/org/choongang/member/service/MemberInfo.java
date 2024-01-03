@@ -18,7 +18,7 @@ public class MemberInfo implements UserDetails {
     private String password;
     private Member member;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities; // 권한
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { // 계정이 갖고 있는 권한 목록을 리턴한다.
