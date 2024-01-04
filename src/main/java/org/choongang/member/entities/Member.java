@@ -3,7 +3,6 @@ package org.choongang.member.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-import org.choongang.commons.entities.Authorities;
 import org.choongang.commons.entities.Base;
 
 import java.util.ArrayList;

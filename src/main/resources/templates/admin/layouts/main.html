@@ -3,18 +3,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+    <meta th:if="${siteConfig.siteDescription != null}" name="description" th:content="${siteConfig.siteDescription}">
+    <meta th:if="${siteConfig.siteKeywords != null}" name="keywords" th:content="${siteConfig.siteKeywords}">
+    <title>
+        <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' - '}"></th:block>
+        <th:block th:if="${siteConfig.siteTitle != null}" th:text="${siteConfig.siteTitle}"></th:block>
+    </title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}(v=${siteConfig.cssJsVersion})}">
     <link rel="stylesheet" type="text/css"
           th:each="cssFile : ${addCommonCss}"
-          th:href="@{/common/css/{file}.css(file=${cssFile})}">
+          th:href="@{/common/css/{file}.css?v={v}(file=${cssFile, v=${sideConfig.cssJsVersion}})}">
 
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
     <link rel="stylesheet" type="text/css"
           th:each="cssFile : ${addCss}"
-          th:href="@{/admin/css/{file}.css(file=${cssFile})}">
+          th:href="@{/admin/css/{file}.css?v={v}(file=${cssFile, v=${sideConfig.cssJsVersion}})}">
 
     <th:block layout:fragment="addCss"></th:block>
 

@@ -28,7 +28,7 @@ dl, dt, dd {
 img { border : 0;}
 
 
-/* 헤더 영역 S*/
+/* 헤더 영역 S */
 header {
     height : 80px;
     display : flex;
@@ -58,9 +58,9 @@ header .btn_area a:last-of-type{
     color: #fff;
 }
 
-/* 헤더 영역 E*/
+/* 헤더 영역 E */
 
-/* 내용 영역 S*/
+/* 내용 영역 S */
 main {
     background : #f1f3fa;
     min-height : 1000px;
@@ -71,7 +71,10 @@ main aside {
     width : 280px;
     background : #596b99;
 }
-main section {flex-grow : 1;}
+main section {
+    flex-grow : 1;
+    padding : 50px;
+}
 main aside a {
     height : 71px;
     display : block;
@@ -127,4 +130,100 @@ nav.submenus a.on {
     color : #fff;
     font-weight : 500;
 }
-/* 내용 영역 E*/
+/* 내용 영역 E */
+
+/* 제목 공통 */
+h1 {
+    margin : 0 0 30px 0;
+    padding : 0 0 20px 10px;
+    line-height : 1;
+    font-size : 2rem;
+    border-bottom : 2px solid #222;
+}
+
+h2 {
+    margin : 0 0 10px 0;
+    font-size : 1.385rem;
+    line-height : 1;
+}
+
+/* 테이블 공통 S */
+.table_cols {
+    width : 100%;
+    border-spacing : 0;
+    border-top : 2px solid #222;
+    background : #fff;
+}
+
+.table_cols th, .table_cols td {
+    padding : 10px;
+    border-bottom : 1px solid #d5d5d5;
+}
+
+.table_cols th {
+    background : #ccc;
+    font-width : normal;
+}
+/* 테이블 공통 E */
+
+/* 입력 공통 S */
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'] {
+    height : 35px;
+    padding : 0 10px;
+    border : 1px solid #d5d5d5;
+}
+textarea {
+    width : 100%;
+    border : 1px solid #d5d5d5;
+    min-height : 200px;
+    padding : 10px;
+    resize : none;
+}
+
+select {
+    height : 35px;
+    border : 1px solid #d5d5d5;
+}
+
+/* 입력 공통 E */
+
+/* 버튼 공통 S */
+.submit_btns {
+    margin : 30px 0;
+    text align : center;
+}
+.submit_btns .btn {
+    height : 45px;
+    display : inline-block;
+    min-width: 200px;
+    padding : 0;
+    border : 1px solid #222;
+    background : #fff;
+    font-size : 1.4rem;
+    font-weight : 500;
+    color : #222;
+    border-radius : 3px;
+    cursor : pointer;
+    line-height : 43px;
+}
+.submit_btns .btn:last-of-type {
+    background : #222;
+    color : #fff;
+}
+/* 버튼 공통 E */
+
+/* 메세지 공통 */
+.message_box {
+    box-shadow : 1px 1px 5px #59d99;
+    padding : 15px;
+    border-radius : 5px;
+    font-size : 1.385rem;
+    font-weight : 500;
+    text-align : center;
+    background : #fff;
+    margin-bottom : 30px;
+    color : #596d99;
+}
