@@ -17,15 +17,15 @@
             <input type="password" name="password" th:field="*{password}" th:placeholder="#{비밀번호}">
             <div calss="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
 
-            <input type="password" name="confirmPassword" th:field="*{confirmPassword}" th:placeholder="#{비밀번호 확인}">
+            <input type="password" name="confirmPassword" th:field="*{confirmPassword}" th:placeholder="#{비밀번호_확인}">
             <div calss="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
 
-            <input type="text" name="name" th:field="*{name}" th:placeholder="#{이름}">
+            <input type="text" name="name" th:field="*{name}" th:placeholder="#{회원명}">
             <div calss="error" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
 
 
         <div th:text="#{회원가입_약관}"></div>
-        <div class="terms">약관...</div>
+        <div class="terms" th:utext="${@utils.nl2br(siteConfig.joinTerms)}"></div>
         <div class="terms_agree">
             <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}"> <!--th:field="*{agree} : 체크가 안풀리게 하는 기능-->
             <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>

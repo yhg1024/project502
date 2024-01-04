@@ -4,12 +4,15 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ExceptionProcessor;
 import org.choongang.commons.Utils;
-import org.choongang.member.MemberUtil;
-import org.choongang.member.entities.Member;
 import org.choongang.member.service.JoinService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member") // 기본주소
@@ -18,16 +21,16 @@ public class MemberContorller implements ExceptionProcessor {
 
     private final Utils utils;
     private final JoinService joinService;
-    private final MemberUtil memberUtil;
 
     @GetMapping("/join")
-    public String join(@ModelAttribute RequestJoin form) {
-
+    public String join(@ModelAttribute RequestJoin form, Model model) {
+        commonProcess("join", model);
         return utils.tpl("member/join");
     }
 
     @PostMapping("/join")
-    public String joinPs(@Valid RequestJoin form, Errors errors) { // Ps : 처리하는 부분
+    public String joinPs(@Valid RequestJoin form, Errors errors, Model model) { // Ps : 처리하는 부분
+        commonProcess("join", model);
 
         joinService.process(form, errors);
 
@@ -39,9 +42,19 @@ public class MemberContorller implements ExceptionProcessor {
     }
 
     @GetMapping("/login")
-    public String login() {
-
+    public String login(Model model) {
+        commonProcess("login", model);
         return utils.tpl("member/login");
+    }
+
+
+    private void commonProcess(String mode, Model model) {
+        mode = StringUtils.hasText(mode) ? mode : "join";
+        String pageTitle = Utils.getMessage("회원가입", "commons");
+        if (mode.equals("login")) {
+            pageTitle = Utils.getMessage("로그인", "commons");
+        }
+        model.addAttribute("pageTitle", pageTitle);
     }
 
     /*@ResponseBody
@@ -68,7 +81,7 @@ public class MemberContorller implements ExceptionProcessor {
         System.out.println(memberInfo);
     }*/
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping("info")
     public void info() {
         if (memberUtil.isLogin()) {
@@ -77,5 +90,5 @@ public class MemberContorller implements ExceptionProcessor {
         } else {
             System.out.println("미로그인 상태");
         }
-    }
+    }*/
 }
