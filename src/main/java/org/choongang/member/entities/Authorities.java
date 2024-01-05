@@ -1,9 +1,8 @@
-package org.choongang.commons.entities;
+package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.member.Authority;
-import org.choongang.member.entities.Member;
 
 @Data
 @Entity
@@ -17,7 +16,7 @@ public class Authorities { // 권한
     private Member member;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(length = 15, nullable = false)
     private Authority authority;
 
 }

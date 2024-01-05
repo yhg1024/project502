@@ -1,4 +1,4 @@
-package org.choongang.commons.entities;
+package org.choongang.member.entities;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QAuthorities extends EntityPathBase<Authorities> {
 
-    private static final long serialVersionUID = -589886986L;
+    private static final long serialVersionUID = -2025522100L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -24,7 +24,7 @@ public class QAuthorities extends EntityPathBase<Authorities> {
 
     public final EnumPath<org.choongang.member.Authority> authority = createEnum("authority", org.choongang.member.Authority.class);
 
-    public final org.choongang.member.entities.QMember member;
+    public final QMember member;
 
     public final NumberPath<Long> seq = createNumber("seq", Long.class);
 
@@ -46,7 +46,7 @@ public class QAuthorities extends EntityPathBase<Authorities> {
 
     public QAuthorities(Class<? extends Authorities> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new org.choongang.member.entities.QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
     }
 
 }

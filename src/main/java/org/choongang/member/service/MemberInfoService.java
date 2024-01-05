@@ -1,7 +1,7 @@
 package org.choongang.member.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.commons.entities.Authorities;
+import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.MemberRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

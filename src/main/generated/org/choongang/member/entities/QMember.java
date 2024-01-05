@@ -22,7 +22,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final org.choongang.commons.entities.QBase _super = new org.choongang.commons.entities.QBase(this);
 
-    public final ListPath<org.choongang.commons.entities.Authorities, org.choongang.commons.entities.QAuthorities> authorities = this.<org.choongang.commons.entities.Authorities, org.choongang.commons.entities.QAuthorities>createList("authorities", org.choongang.commons.entities.Authorities.class, org.choongang.commons.entities.QAuthorities.class, PathInits.DIRECT2);
+    public final ListPath<Authorities, QAuthorities> authorities = this.<Authorities, QAuthorities>createList("authorities", Authorities.class, QAuthorities.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
