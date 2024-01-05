@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.choongang.admin.config.controllers.BasicConfig;
+import org.choongang.file.service.FileInfoService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -17,6 +18,7 @@ public class Utils {
 
     private final HttpServletRequest request;
     private final HttpSession session;
+    private final FileInfoService fileInfoService;
 
     private static final ResourceBundle commonsBundle;
     private static final ResourceBundle validationsBundle;
@@ -92,7 +94,10 @@ public class Utils {
         String thumbSize = config.getThumbSize(); // \r\n
         String[] thumbsSize = thumbSize.split("\\n");
 
-        List<int[]> data = Arrays.stream(thumbsSize).map(this::toConvert).toList();
+        List<int[]> data = Arrays.stream(thumbsSize)
+                .filter(StringUtils::hasText)
+                .map(s -> s.replaceAll("\\s+","")) // 공백제거
+                .map(this::toConvert).toList();
 
         return data;
     }
@@ -104,4 +109,19 @@ public class Utils {
 
         return data;
     }
+
+    public String printThumb(long seq, int width, int height, String className) {
+        String[] data = fileInfoService.getThumb(seq, width, height);
+        if (data != null) {
+            String  cls = StringUtils.hasText(className) ? " class ='" + className + "'" : "";
+            String image = String.format("<img src='%s'%s>", data[1], cls);
+            return image;
+        }
+        return "";
+    }
+
+    public String printThumb(long seq, int width, int height) {
+        return  printThumb(seq, width, height, null);
+    }
+
 }

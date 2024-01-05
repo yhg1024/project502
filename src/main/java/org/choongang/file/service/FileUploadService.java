@@ -27,7 +27,7 @@ public class FileUploadService {
     private final FileInfoService infoService;
     private final Utils utils;
 
-    public List<FileInfo> upload(MultipartFile[] files, String gid, String location) {
+    public List<FileInfo> upload(MultipartFile[] files, String gid, String location, boolean imageOnly) {
         /**
          * 1. 파일 정보 저장
          * 2. 서버쪽에 파일 업로드 처리
@@ -47,9 +47,14 @@ public class FileUploadService {
             String fileName = file.getOriginalFilename(); // 업로드시 원래 파일명
             // 파일명.확장자 image.png
 
+            // 확장자
             String extension = fileName.substring(fileName.lastIndexOf("."));
 
             String fileType = file.getContentType(); // 파일 종류 - 예) image/..
+            // 이미지만 업로드 하는 경우, 이미지가 아닌 형식은 업로드 배제
+            if (imageOnly && fileType.indexOf("image/") == -1) {
+
+            }
 
             FileInfo fileInfo = FileInfo.builder()
                     .gid(gid) // 그룹아이디
@@ -75,16 +80,15 @@ public class FileUploadService {
 
                 /* 썸네일 이미지 처리 S */
                 if (fileType.indexOf("image/") != -1 && thumbsSize != null) {
-                    File thumbDir = new File(thumbPath + dir);
+                    File thumbDir = new File(thumbPath + (seq % 10L) + "/" + seq);
                     if (!thumbDir.exists()) {
                         thumbDir.mkdirs(); // mkdirs : 's'를 붙이면 상위폴더까지 한꺼번에 만들어준다.
                     }
                     for (int[] sizes : thumbsSize) {
-                        String thumbFileName = sizes[0] + "_" + sizes[1] + "_" + fileName;
+                        String thumbFileName = sizes[0] + "_" + sizes[1] + "_" + seq + extension;
                         // 너비_높이_파일명
 
                         File thumb = new File(thumbDir, thumbFileName);
-
                         Thumbnails.of(uploadFile)
                                 .size(sizes[0], sizes[1])
                                 .toFile(thumb);
