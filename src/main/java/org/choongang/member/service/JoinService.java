@@ -38,6 +38,7 @@ public class JoinService {
         member.setEmail(form.getEmail());
         member.setName(form.getName());
         member.setUserId(form.getUserId());
+        member.setGid(form.getGid());
 
         member.setPassword(hash);
 
