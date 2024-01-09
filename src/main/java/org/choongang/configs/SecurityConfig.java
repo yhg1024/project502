@@ -75,6 +75,9 @@ public class SecurityConfig {
 
         /*인가 설정 E - 접근 통제*/
 
+        http.headers((c -> c.frameOptions(f -> f.sameOrigin())));
+        // 같은 서버 내에서는 iframe을 사용할 수 있다.
+
         return http.build();
     }
 

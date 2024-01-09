@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 public class JSONData<T> {
     private HttpStatus status = HttpStatus.OK;
-    private boolean sucess = true;
+    private boolean success = true;
     @NonNull
     private T data;
     private String message;

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 이미지를 사용하는 다양한 곳에 쓰기위해 데이터만 치화해서 쓰려고 -->
+<script type="text/html" id="image1_tpl" th:fragment="image1_tpl">
+    <div class="image1_tpl_box" id="file_[seq]">
+        <a th:href="@{/file/delete/[seq]}" onclick="return confirm('정말 삭제하시겠습니까?');" class="remove" target="ifrmProcess">
+            <i class="xi-close"></i>
+        </a>
+        <div class="inner" style="background:url('[imageUrl]'); no-repeat cneter center; background-size:cover;"></div> <!--'[imageUrl]' : 치환코드-->
+    </div>
+</script>
+</html>
