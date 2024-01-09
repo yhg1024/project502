@@ -83,14 +83,17 @@ public class boardController implements ExceptionProcessor {
             pageTitle = "게시판 등록";
         } else if (mode.equals("edit")) {
             pageTitle = "게시판 수정";
-        } else if (mode.equals("post")) {
+        } else if (mode.equals("posts")) {
             pageTitle = "게시글 관리";
         }
 
         List<String> addCommonScript = new ArrayList<>();
         List<String> addScript = new ArrayList<>();
+
         if (mode.equals("add") || mode.equals("edit")) { // 게시판 등록 또는 수정
-            addCommonScript.add("ckeitor5/ckeditor");
+            addCommonScript.add("ckeditor5/ckeditor");
+            addCommonScript.add("fileManager");
+
             addScript.add("board/form");
         }
 

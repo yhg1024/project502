@@ -78,9 +78,11 @@ public class FileInfoService {
         return getList(gid, location, "ALL");
     }
 
-    public List<FileInfo> getLisetDone(String gid) {
+    public List<FileInfo> getListDone(String gid) {
         return getList(gid, null, "DONE");
     }
+
+
 
     public List<FileInfo> getListDone(String gid, String location) {
         return getList(gid, location, "DONE");
@@ -182,4 +184,6 @@ public class FileInfoService {
         String thumbDirCommon = "thumbs/" + (seq % 10L) + "/" + seq;
         return fileProperties.getUrl() + thumbDirCommon;
     }
+
+
 }
