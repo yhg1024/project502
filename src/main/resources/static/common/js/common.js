@@ -17,14 +17,13 @@ commonLib.ajaxLoad = function(method, url, params, responseType) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
-
         xhr.open(method, url);
         xhr.setRequestHeader(tokenHeader, token);
 
-        xhr.set(params); // 요청 바디에 실릴 데이터 키=값&키=값& ... FormData 객체(POST, PATCH, PUT)
+        xhr.send(params); // 요청 바디에 실릴 데이터 키=값&키=값& ... FormData 객체(POST, PATCH, PUT)
 
         xhr.onreadystatechange = function() {
-            if (xhr.status == 200 && xhr.readySate == XMLHttpRequest.DONE) {
+            if (xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE) {
                 const resData = (responseType && responseType.toLowerCase() == 'json') ? JSON.parse(xhr.responseText) : xhr.responseText;
 
                 resolve(resData); // 성공시 응답 데이터

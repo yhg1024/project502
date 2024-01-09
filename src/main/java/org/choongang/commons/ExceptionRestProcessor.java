@@ -17,7 +17,7 @@ public interface ExceptionRestProcessor {
         }
 
         JSONData<Object> data = new JSONData<>();
-        data.setSucess(false);
+        data.setSuccess(false);
         data.setStatus(status);
         data.setMessage(e.getMessage());
 

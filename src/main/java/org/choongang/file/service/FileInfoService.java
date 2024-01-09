@@ -82,7 +82,7 @@ public class FileInfoService {
         return getList(gid, null, "DONE");
     }
 
-    public  List<FileInfo> getListDone(String gid, String location) {
+    public List<FileInfo> getListDone(String gid, String location) {
         return getList(gid, location, "DONE");
     }
 

@@ -27,7 +27,7 @@ public class FileController implements ExceptionProcessor {
     public String delete(@PathVariable("seq") Long seq, Model model) {
         deleteService.delete(seq);
 
-        String script = String.format("if (typeof parent.callbackFileDelete == 'function') parent.callbackFileDelete(%d);", seq);
+        String script = String.format("if (typeof parent.callbackFileDelete == 'function') parent.callbackFileDelete(%d);", seq); // 삭제 후 요청
         model.addAttribute("script", script);
 
         return "common/_execute_script";

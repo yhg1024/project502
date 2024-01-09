@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("adminBoardController")
@@ -32,7 +33,8 @@ public class boardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping
-    public String list() {
+    public String list(Model model) {
+        commonProcess("list", model);
 
         return "admin/board/list";
     }
@@ -42,7 +44,8 @@ public class boardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        commonProcess("add", model);
 
         return "admin/board/add";
     }
@@ -61,7 +64,8 @@ public class boardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping("/posts")
-    public String posts() {
+    public String posts(Model model) {
+        commonProcess("posts", model);
         return "admin/board/posts";
     }
 
@@ -74,6 +78,7 @@ public class boardController implements ExceptionProcessor {
         String pageTitle = "게시판 목록";
         mode = StringUtils.hasText(mode) ? mode : "list";
 
+
         if (mode.equals("add")) {
             pageTitle = "게시판 등록";
         } else if (mode.equals("edit")) {
@@ -82,6 +87,16 @@ public class boardController implements ExceptionProcessor {
             pageTitle = "게시글 관리";
         }
 
+        List<String> addCommonScript = new ArrayList<>();
+        List<String> addScript = new ArrayList<>();
+        if (mode.equals("add") || mode.equals("edit")) { // 게시판 등록 또는 수정
+            addCommonScript.add("ckeitor5/ckeditor");
+            addScript.add("board/form");
+        }
+
         model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("subMenuCode", mode);
+        model.addAttribute("addCommonScript", addCommonScript);
+        model.addAttribute("addScript", addScript);
     }
 }
