@@ -38,3 +38,5 @@ out/
 
 ### 개발 환경 ###
 application-dev.*
+
+src/main/generated

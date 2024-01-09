@@ -39,3 +39,20 @@ commonLib.ajaxLoad = function(method, url, params, responseType) {
         }
     });
 };
+
+/*
+위지윅 에디터 로드
+*/
+commonLib.loadEditor = function(id, height) {
+    if (!id) {
+        return;
+    }
+
+    height = height || 450;
+
+    // ClassicEditor 객체를 통해 만든다.
+    // 반환값: 생성된 에디터 객체
+        return ClassicEditor.create(document.getElementById(id), {
+            height
+        });
+}

@@ -47,7 +47,7 @@ public class FileUploadService {
         String uploadPath = fileProperties.getPath(); // 파일 업로드 기본 경로
         String thumbPath = uploadPath + "thumbs/"; // 썸네일 업로드 기본 경로
 
-        List<int[]> thumbsSize = utils.getThumbsSize(); // 썸네일 사이즈
+        List<int[]> thumbsSize = utils.getThumbSize(); // 썸네일 사이즈
 
         List<FileInfo> uploadedFiles = new ArrayList<>(); // 업로드 성공 파일 정보 목록
 
@@ -62,15 +62,15 @@ public class FileUploadService {
             String fileType = file.getContentType(); // 파일 종류 - 예) image/..
             // 이미지만 업로드 하는 경우, 이미지가 아닌 형식은 업로드 배제
             if (imageOnly && fileType.indexOf("image/") == -1) {
-
+                continue;
             }
 
             FileInfo fileInfo = FileInfo.builder()
-                    .gid(gid) // 그룹아이디
-                    .location(location) // 위치
-                    .fileName(fileName) // 원래 파일명
-                    .extension(extension) // 확장자
-                    .fileType(fileType) // 파일 종류
+                    .gid(gid)
+                    .location(location)
+                    .fileName(fileName)
+                    .extension(extension)
+                    .fileType(fileType)
                     .build();
 
             repository.saveAndFlush(fileInfo);
@@ -80,7 +80,7 @@ public class FileUploadService {
             long seq = fileInfo.getSeq();
             File dir = new File(uploadPath + (seq % 10));
             if (!dir.exists()) { // 디렉토리가 없으면 -> 생성
-                dir.mkdir(); // mkdir : 디렉토리 생성 명령어
+                dir.mkdir();
             }
 
             File uploadFile = new File(dir, seq + extension);
@@ -91,17 +91,18 @@ public class FileUploadService {
                 if (fileType.indexOf("image/") != -1 && thumbsSize != null) {
                     File thumbDir = new File(thumbPath + (seq % 10L) + "/" + seq);
                     if (!thumbDir.exists()) {
-                        thumbDir.mkdirs(); // mkdirs : 's'를 붙이면 상위폴더까지 한꺼번에 만들어준다.
+                        thumbDir.mkdirs();
                     }
                     for (int[] sizes : thumbsSize) {
                         String thumbFileName = sizes[0] + "_" + sizes[1] + "_" + seq + extension;
-                        // 너비_높이_파일명
 
                         File thumb = new File(thumbDir, thumbFileName);
+
                         Thumbnails.of(uploadFile)
                                 .size(sizes[0], sizes[1])
                                 .toFile(thumb);
                     }
+
                 }
 
                 /* 썸네일 이미지 처리 E */
@@ -109,6 +110,7 @@ public class FileUploadService {
                 infoService.addFileInfo(fileInfo); // 파일 추가 정보 처리
 
                 uploadedFiles.add(fileInfo); // 업로드 성공시 파일 정보 추가
+
             } catch (IOException e) {
                 e.printStackTrace();
                 repository.delete(fileInfo); // 업로드 실패시에는 파일 정보 제거
@@ -116,6 +118,7 @@ public class FileUploadService {
             }
             /* 파일 업로드 처리 E */
         }
+
         return uploadedFiles;
     }
 
