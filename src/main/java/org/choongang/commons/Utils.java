@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+// 편의 기능
 @Component
 @RequiredArgsConstructor
 public class Utils {
@@ -124,6 +125,18 @@ public class Utils {
 
     public String printThumb(long seq, int width, int height) {
         return  printThumb(seq, width, height, null);
+    }
+
+    /**
+     *  0이하 정수인 경우 1이상 정수로 대체
+     *
+     * @param num
+     * @param replace
+     * @return
+     */
+    public static int onlyPositiveNumber(int num, int replace) {
+        // 양수가 아니면 교체
+        return num < 1 ? replace : num;
     }
 
 }

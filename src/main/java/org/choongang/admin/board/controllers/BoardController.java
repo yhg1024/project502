@@ -1,11 +1,13 @@
-package org.choongang.admin.board;
+package org.choongang.admin.board.controllers;
 
+import jakarta.validation.Valid;
 import org.choongang.admin.menus.Menu;
 import org.choongang.admin.menus.MenuDetail;
 import org.choongang.commons.ExceptionProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @Controller("adminBoardController")
 @RequestMapping("/admin/board")
-public class boardController implements ExceptionProcessor {
+public class BoardController implements ExceptionProcessor {
 
     @ModelAttribute("menuCode")
     public String getMenuCode() { // 주 메뉴 코드
@@ -44,7 +46,7 @@ public class boardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(@ModelAttribute RequestBoardConfig config, Model model) {
         commonProcess("add", model);
 
         return "admin/board/add";
@@ -55,7 +57,15 @@ public class boardController implements ExceptionProcessor {
      * @return
      */
     @PostMapping("/save")
-    public String save() {
+    public String save(@Valid RequestBoardConfig config, Errors errors, Model model) {
+        String mode = config.getMode();
+
+        commonProcess(mode, model);
+
+        if (errors.hasErrors()) {
+            return "admin/board/" + mode;
+        }
+
         return "redirect:/admin/board";
     }
 
