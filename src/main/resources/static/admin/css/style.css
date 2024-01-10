@@ -212,9 +212,41 @@ select {
     background : #222;
     color : #fff;
 }
+
+.sbtn{
+    border : 1px solid #222;
+    color : #222;
+    background : #fff;
+    display : inline-block;
+    padding : 7px 20px;
+    border-radius : 3px;
+    cursor : pointer;
+    line-height : 1;
+}
+
+.sbtn:hover, .sbtn.on {
+    background : #596d99;
+    color : #fff;
+    border-color : #596d99;
+}
+
+.sbtn i {
+    color : #222;
+    font-size : 1.1rem;
+    vertical-align : middle;
+    line-height : 1;
+}
+
+.sbtn:hover i, .sbtn.on i {
+    color : #fff;
+}
+
+.mbtn{}
+
+.lbtn{}
 /* 버튼 공통 E */
 
-/* 메세지 공통 */
+/* 메세지 공통 S */
 .message_box {
     box-shadow : 1px 1px 5px #59d99;
     padding : 15px;
@@ -226,6 +258,23 @@ select {
     margin-bottom : 30px;
     color : #596d99;
 }
+
+.error {
+    box-shadow : 1px 1px 5px #596d99;
+    padding: 7px 15px;
+    border-radius : 5px;
+    font-size : 0.95rem;
+    color : #596d99;
+    font-weight : 500;
+    margin : 5px 0;
+}
+
+.error.global {
+    padding : 10px 15px;
+    font-size : 1.15rem;
+    margin : 0 0 5px;
+}
+/* 메세지 공통 E */
 
 /* 페이징 공통 S */
 .pagination {
