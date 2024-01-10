@@ -28,7 +28,7 @@ public class Pagination {
     private int lastRangePage; // 구간별 마지막 페이지
 
     private int prevRangePage; // 이전 구간 첫 페이지 번호
-    private int nextRagePage; // 다음 구간 첫 페이지 번호
+    private int nextRangePage; // 다음 구간 첫 페이지 번호
 
     private int totalPages; // 전체 페이지 갯수
     private String baseURL; // 페이징 쿼리스트링 기본 URL
@@ -71,7 +71,7 @@ public class Pagination {
         int lastRangeCnt = (totalPages -1) / ranges;
         // 다음 구간 첫 페이지
         if (rangeCnt < lastRangeCnt) { // 마지막 구간이 아닌 경우 다음 구간 첫 페이지
-            nextRagePage = firstRangePage + ranges;
+            nextRangePage = firstRangePage + ranges;
         }
 
         /*
